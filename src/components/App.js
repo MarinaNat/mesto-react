@@ -1,9 +1,9 @@
-import Header from "./components/Header";
-import Main from "./components/Main";
-import Footer from "./components/Footer";
-import "./index.css";
-import PopupWithForm from "./components/PopupWithForm";
-import ImagePopup from "./components/ImagePopup";
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
+import "../index.css";
+import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
 import React from "react";
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard(false);
+    setSelectedCard({});
   };
 
   return (
@@ -55,6 +55,7 @@ function App() {
         title="Редактировать профиль"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
+        buttonText="Сохранить"
       >
         <input
           id="user-name"
@@ -83,6 +84,7 @@ function App() {
         title="Обновить аватар"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
+        buttonText="Сохранить"
       >
         <input
           id="avatar"
@@ -99,6 +101,7 @@ function App() {
         title="Новое место"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
+        buttonText="Создать"
       >
         <input
           id="element-name"
@@ -122,7 +125,11 @@ function App() {
         <span id="element-link-error" className="error"></span>
       </PopupWithForm>
 
-      <PopupWithForm name="delete" title="Вы уверены?"></PopupWithForm>
+      <PopupWithForm
+        name="delete"
+        title="Вы уверены?"
+        buttonText="Да"
+      ></PopupWithForm>
 
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </div>
