@@ -4,7 +4,10 @@ import PopupWithForm from "./PopupWithForm";
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
 
   const editAvatarRef = React.useRef(); // записываем объект, возвращаемый хуком, в переменную
- 
+  
+  React.useEffect(() => {
+    editAvatarRef.current.value = '';
+  }, [isOpen])
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateAvatar({
