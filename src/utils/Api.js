@@ -12,7 +12,7 @@ export default class Api {
   }
 
   //данные с сервера о профиле
-  getProfile() {
+  getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
       headers: this._headers,
@@ -28,13 +28,13 @@ export default class Api {
   }
 
   //отправка данных профиля
-  editProfile(userData) {
+  setUserInfo(userData) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: userData.userName,
-        about: userData.userStatus,
+        name: userData.name,
+        about: userData.about,
       }),
     }).then(this._makeRequest);
   }
@@ -45,8 +45,8 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.elementName,
-        link: data.elementLink,
+        name: data.name,
+        link: data.link,
       }),
     }).then(this._makeRequest);
   }
@@ -59,29 +59,21 @@ export default class Api {
     }).then(this._makeRequest);
   }
 
-  //добавление лайка
-  addLike(id) {
+//добавленеи, удаление лайков
+  changeLikeCardStatus(id, isLiked) {
     return fetch(`${this._url}/cards/${id}/likes`, {
-      method: "PUT",
-      headers: this._headers,
-    }).then(this._makeRequest);
-  }
-
-  //удаление лайка
-  deleteLike(id) {
-    return fetch(`${this._url}/cards/${id}/likes`, {
-      method: "DELETE",
+      method: `${isLiked ? "PUT" : "DELETE"}`,
       headers: this._headers,
     }).then(this._makeRequest);
   }
 
   //отправка данных аватарки
-  updateUserAvatar(data) {
+  setUserAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.userAvatar,
+        avatar: data.avatar,
       }),
     }).then(this._makeRequest);
   }

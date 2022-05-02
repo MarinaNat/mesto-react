@@ -9,6 +9,7 @@ function PopupWithForm(props) {
       id="popup_profile"
     >
       <form
+        onSubmit={props.onSubmit}
         name={props.name}
         className="popup popup_profile popup_form"
         noValidate
